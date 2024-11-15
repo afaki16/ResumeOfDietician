@@ -1,32 +1,29 @@
 <template>
-  <div class="min-h-screen bg-gray-100">
-    <TheNavbar />
-    <router-view v-slot="{ Component }">
-      <transition
-        name="page"
-        mode="out-in"
-      >
-        <component :is="Component" />
-      </transition>
-    </router-view>
-    <TheFooter />
+  <div id="app">
+    <site-header />
+    <main role="main">
+      <hero-section />
+      <welcome-section />
+      <about-section />
+      <causes-section />
+      <volunteer-section />
+      <news-section />
+      <testimonial-section />
+      <contact-section />
+    </main>
+    <site-footer />
   </div>
 </template>
 
 <script setup>
-import TheNavbar from './components/TheNavbar.vue'
-import TheFooter from './components/TheFooter.vue'
+import SiteHeader from './components/SiteHeader.vue'
+import HeroSection from './components/HeroSection.vue'
+import WelcomeSection from './components/WelcomeSection.vue'
+import AboutSection from './components/AboutSection.vue'
+import CausesSection from './components/CausesSection.vue'
+import VolunteerSection from './components/VolunteerSection.vue'
+import NewsSection from './components/NewsSection.vue'
+import TestimonialSection from './components/TestimonialSection.vue'
+import ContactSection from './components/ContactSection.vue'
+import SiteFooter from './components/SiteFooter.vue'
 </script>
-
-<style>
-.page-enter-active,
-.page-leave-active {
-  transition: opacity 0.5s, transform 0.5s;
-}
-
-.page-enter-from,
-.page-leave-to {
-  opacity: 0;
-  transform: translateY(20px);
-}
-</style>
