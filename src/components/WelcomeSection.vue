@@ -27,33 +27,33 @@
 <script setup>
 import { ref } from 'vue'
 
-const title = ref('Welcome to Kind Heart Charity')
+const title = ref('Eğer Beraber Çalışırsak...')
 const blockClasses = 'col-lg-3 col-md-6 col-12 mb-4 mb-lg-0'
 
 const featuredBlocks = ref([
   {
-    image: new URL('@/assets/images/icons/hands.png', import.meta.url).href,
+    image: new URL('@/assets/images/icons/zayiflama.jpg', import.meta.url).href,
     link: 'donate.html',
-    boldText: 'Become a ',
-    text: 'volunteer'
+    boldText: 'Zayıflama',
+    text: 'Seçenekleri'
   },
   {
-    image: new URL('@/assets/images/icons/heart.png', import.meta.url).href,
+    image: new URL('@/assets/images/icons/kiloalma.jpg', import.meta.url).href,
     link: 'donate.html',
-    boldText: 'Caring ',
-    text: 'Earth'
+    boldText: 'Kilo Alma ',
+    text: 'Seçenekleri'
   },
   {
-    image: new URL('@/assets/images/icons/receive.png', import.meta.url).href,
+    image: new URL('@/assets/images/icons/saglik.jpg', import.meta.url).href,
     link: 'donate.html',
-    boldText: 'Make a ',
-    text: 'Donation'
+    boldText: 'Sağlıklı ',
+    text: 'Yaşam'
   },
   {
-    image: new URL('@/assets/images/icons/scholarship.png', import.meta.url).href,
+    image: new URL('@/assets/images/icons/sporcu.jpg', import.meta.url).href,
     link: 'donate.html',
-    boldText: 'Scholarship ',
-    text: 'Program'
+    boldText: 'Sporcu ',
+    text: 'Beslenmesi'
   }
 ])
 </script>

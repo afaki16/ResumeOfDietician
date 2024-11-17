@@ -7,9 +7,9 @@
       <welcome-section />
       <about-section />
       <causes-section />
-      <volunteer-section />
-      <news-section />
+
       <testimonial-section />
+      <volunteer-section />
       <contact-section />
     </main>
     <site-footer />
@@ -23,7 +23,7 @@ import WelcomeSection from './components/WelcomeSection.vue'
 import AboutSection from './components/AboutSection.vue'
 import CausesSection from './components/CausesSection.vue'
 import VolunteerSection from './components/VolunteerSection.vue'
-import NewsSection from './components/NewsSection.vue'
+
 import TestimonialSection from './components/TestimonialSection.vue'
 import ContactSection from './components/ContactSection.vue'
 import SiteFooter from './components/layout/SiteFooter.vue'

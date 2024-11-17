@@ -51,7 +51,7 @@
 <script setup>
 import { ref } from 'vue'
 
-const sectionTitle = ref('Our Causes')
+const sectionTitle = ref('Bilgilendiren Paylaşımalar')
 
 const causes = ref([
   {

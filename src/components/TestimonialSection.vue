@@ -67,7 +67,7 @@
 import { ref, onMounted } from 'vue'
 import { Carousel } from 'bootstrap'
 
-const sectionTitle = ref('Happy Customers')
+const sectionTitle = ref('Danışan Yorumları')
 
 // Testimonial verileri
 const testimonials = ref([

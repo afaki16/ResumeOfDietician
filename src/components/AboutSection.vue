@@ -46,23 +46,23 @@
 import { ref } from 'vue'
 import CounterBlock from './CounterBlock.vue'
 
-const aboutImage = new URL('@/assets/images/group-people-volunteering-foodbank-poor-people.jpg', import.meta.url).href
-const title = ref('Our Story')
-const subtitle = ref('Kind Heart Charity, Non-Profit Organization')
-const description = ref('This is a Bootstrap 5.2.2 CSS template for charity organization websites. You can feel free to use it.')
+const aboutImage = new URL('@/assets/images/Image.jpeg', import.meta.url).href
+const title = ref('Tanışalım')
+const subtitle = ref('Eğitim')
+const description = ref('2019 yılında İstanbul Aydın Üniversitesinden mezun oldum.')
 const mission = ref('Sed leo nisl, posuere at molestie ac, suscipit auctor quis metus')
 const missionItems = ref(['Charity Theme', 'Semantic HTML'])
 
 const counters = ref([
   {
-    number: 2009,
-    text: 'Founded',
-    suffix: ''
+    number: 1000,
+    text: 'Kaybedilen Kilo',
+    suffix: 'Kg'
   },
   {
     number: 120,
-    text: 'Donations',
-    suffix: 'B'
+    text: 'Danışan Sayısı',
+    suffix:''
   }
 ])
 </script>

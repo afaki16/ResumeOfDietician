@@ -1,13 +1,10 @@
 <template>
-  <nav class="navbar navbar-expand-lg">
+  <nav class="navbar navbar-expand-lg bg-light shadow-lg">
     <div class="container">
-      <!-- Logo ve Marka -->
-      <router-link to="/" class="navbar-brand">
-        <img src="@/assets/images/logo.png" class="logo img-fluid" alt="Kind Heart Charity">
-        Kind Heart Charity
-        <small class="small">Non-profit Organization</small>
-      </router-link>
+      <a class="navbar-brand" href="index.html">
+                    <img src="@/assets/images/Logoa.png" class="logo img-fluid" >
 
+                </a>
       <!-- Mobil Menü Butonu -->
       <button class="navbar-toggler"
               type="button"
@@ -109,10 +106,6 @@ const scrollToSection = (sectionId) => {
   padding-bottom: 0;
 }
 
-.logo {
-  max-width: 120px;
-  margin-right: 15px;
-}
 
 .navbar .custom-btn {
   padding: 8px 20px;

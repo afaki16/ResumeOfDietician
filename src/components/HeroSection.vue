@@ -36,17 +36,17 @@ import { Carousel } from 'bootstrap'
 
 const slides = ref([
   {
-    image: new URL('@/assets/images/slide/volunteer-helping-with-donation-box.jpg', import.meta.url).href,
+    image: new URL('@/assets/images/slide/Image.jpeg', import.meta.url).href,
     title: 'be a Kind Heart',
     description: 'Professional charity theme based on Bootstrap 5.2.2'
   },
   {
-    image: new URL('@/assets/images/slide/volunteer-selecting-organizing-clothes-donations-charity.jpg', import.meta.url).href,
+    image: new URL('@/assets/images/slide/last.jpeg', import.meta.url).href,
     title: 'Non-profit',
     description: 'You can support us to grow more'
   },
   {
-    image: new URL('@/assets/images/slide/medium-shot-people-collecting-donations.jpg', import.meta.url).href,
+    image: new URL('@/assets/images/slide/Logoa.png', import.meta.url).href,
     title: 'Humanity',
     description: 'Please tell your friends about our website'
   }
