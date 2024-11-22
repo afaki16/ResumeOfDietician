@@ -36,7 +36,7 @@ import { Carousel } from 'bootstrap'
 
 const slides = ref([
   {
-    image: new URL('@/assets/images/slide/Image.jpeg', import.meta.url).href,
+    image: new URL('@/assets/images/slide/vv.jpeg', import.meta.url).href,
     title: 'be a Kind Heart',
     description: 'Professional charity theme based on Bootstrap 5.2.2'
   },
@@ -46,7 +46,7 @@ const slides = ref([
     description: 'You can support us to grow more'
   },
   {
-    image: new URL('@/assets/images/slide/Logoa.png', import.meta.url).href,
+    image: new URL('@/assets/images/slide/dd.jpeg', import.meta.url).href,
     title: 'Humanity',
     description: 'Please tell your friends about our website'
   }

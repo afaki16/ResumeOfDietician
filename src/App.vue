@@ -7,7 +7,6 @@
       <welcome-section />
       <about-section />
       <causes-section />
-
       <testimonial-section />
       <volunteer-section />
       <contact-section />

@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg bg-light shadow-lg">
     <div class="container">
       <a class="navbar-brand" href="index.html">
-                    <img src="@/assets/images/Logoa.png" class="logo img-fluid" >
+                    <img src="@/assets/images/logo.jpeg" class="logo img-fluid" >
 
                 </a>
       <!-- Mobil Menü Butonu -->
@@ -70,14 +70,7 @@ const menuItems = ref([
   { text: 'About', link: '#section_2', scroll: true },
   { text: 'Causes', link: '#section_3', scroll: true },
   { text: 'Volunteer', link: '#section_4', scroll: true },
-  {
-    text: 'News',
-    id: 'navbarLightDropdownMenuLink',
-    children: [
-      { text: 'News Listing', link: '/news' },
-      { text: 'News Detail', link: '/news-detail' }
-    ]
-  },
+
   { text: 'Contact', link: '#section_6', scroll: true },
   { text: 'Donate', link: '/donate', classes: 'nav-link custom-btn custom-border-btn btn' }
 ])

@@ -1,170 +1,121 @@
 <template>
-  <section id="section_4" class="section volunteer-section section-padding">
+  <section id="section_3" class="section section-padding">
     <div class="container">
       <div class="row">
-        <div class="col-lg-6 col-12">
-          <h2 class="text-white mb-4">{{ title }}</h2>
-          <h3 class="text-white mb-4">{{ subtitle }}</h3>
-
-          <form class="custom-form volunteer-form" @submit.prevent="handleSubmit">
-            <div class="row">
-              <div class="col-lg-6 col-12">
-                <input type="text"
-                       v-model="formData.name"
-                       class="form-control"
-                       placeholder="Name"
-                       required>
-              </div>
-
-              <div class="col-lg-6 col-12">
-                <input type="email"
-                       v-model="formData.email"
-                       class="form-control"
-                       placeholder="Email"
-                       required>
-              </div>
-
-              <div class="col-lg-6 col-12">
-                <input type="text"
-                       v-model="formData.subject"
-                       class="form-control"
-                       placeholder="Subject"
-                       required>
-              </div>
-
-              <div class="col-lg-6 col-12">
-                <div class="input-group input-group-file">
-                  <input type="file"
-                         class="form-control"
-                         @change="handleFileUpload"
-                         accept=".pdf,.doc,.docx">
-                  <label class="input-group-text" for="inputGroupFile02">
-                    Upload your CV
-                  </label>
-                </div>
-              </div>
-            </div>
-
-            <textarea v-model="formData.message"
-                      class="form-control"
-                      rows="5"
-                      placeholder="Comment (Optional)"></textarea>
-
-            <button type="submit" class="custom-btn btn">Submit</button>
-          </form>
+        <div class="col-lg-12 col-12 text-center mb-4">
+          <h2>{{ sectionTitle }}</h2>
         </div>
 
-        <div class="col-lg-6 col-12">
-          <img :src="volunteerImage"
-               class="volunteer-image img-fluid"
-               alt="Volunteer">
 
-          <div class="custom-block-body text-center">
-            <h4 class="text-white mt-lg-3 mb-lg-3">About Volunteering</h4>
-            <p class="text-white">{{ aboutText }}</p>
+      <div v-for="post in posts" :key="post.id" class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
+          <div class="custom-block-wrap">
+            <img src='@/assets/images/slide/vv.jpeg'
+             class="fixed-size-image custom-block-image img-fluid"
+                 alt="asdgasdf">
+            <div class="custom-block">
+              <div class="custom-block-body">
+                <h5 class="mb-3">{{ post.title }}</h5>
+                <div v-html="truncateContent(post.content)" class="post-content"></div>
+                <div class="d-flex align-items-center my-2">
+                  <p class="mb-0">
+                    <strong>Raised:</strong> {{ formatDate(post.pubDate) }}
+                  </p>
+                  <p class="ms-auto mb-0">
+                    <strong>Goal:</strong> {{ formatDate(post.pubDate) }}
+                  </p>
+                </div>
+              </div>
+              <a :href="post.link" target="_blank" class="custom-btn btn">Devamını Oku</a>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
-</template>
 
-<script setup>
-import { ref, reactive } from 'vue'
+ </template>
 
-const title = ref('Volunteer')
-const subtitle = ref('Become a volunteer today')
-const aboutText = ref('Lorem Ipsum dolor sit amet, consectetur adipsicing kengan omeg kohm tokito Professional charity theme based')
-const volunteerImage = new URL('@/assets/images/smiling-casual-woman-dressed-volunteer-t-shirt-with-badge.jpg', import.meta.url).href
+ <script setup>
+ import { ref, onMounted } from 'vue'
 
-const formData = reactive({
-  name: '',
-  email: '',
-  subject: '',
-  message: '',
-  cv: null
-})
+ const sectionTitle = ref('Bilgilendiren Paylaşımalar')
+ const posts = ref([])
+ const cleanContent = (content) => {
+  // Medium'un eklediği tracking img'i kaldır
+  content = content.replace(/<img src="https:\/\/medium.com\/_\/stat?.+?>/g, '')
 
-const handleFileUpload = (event) => {
-  formData.cv = event.target.files[0]
+  // Gereksiz boşlukları temizle
+  return content.trim()
 }
 
-const handleSubmit = async () => {
-  try {
-    // Burada form verilerini işleyebilir veya bir API'ye gönderebilirsiniz
-    console.log('Form submitted:', formData)
+const truncateContent = (content) => {
+  // HTML'i temizle
+  content = cleanContent(content)
 
-    // FormData objesi oluşturarak dosya yüklemesi yapabilirsiniz
-    const submitData = new FormData()
-    submitData.append('name', formData.name)
-    submitData.append('email', formData.email)
-    submitData.append('subject', formData.subject)
-    submitData.append('message', formData.message)
-    if (formData.cv) {
-      submitData.append('cv', formData.cv)
-    }
+  // HTML etiketlerini kaldır ve metni al
+  let plainText = content.replace(/<[^>]*>/g, '')
 
-    // API çağrısı örneği:
-    // const response = await fetch('/api/volunteer', {
-    //   method: 'POST',
-    //   body: submitData
-    // })
+  // İlk 100 karakteri al
+  let truncated = plainText.substring(0, 150)
 
-    // Form başarıyla gönderildikten sonra formu temizle
-    Object.keys(formData).forEach(key => formData[key] = '')
-
-    // Başarı mesajı göster
-    alert('Thank you for volunteering! We will contact you soon.')
-  } catch (error) {
-    console.error('Error submitting form:', error)
-    alert('An error occurred. Please try again.')
+  // Eğer metin kesilmişse "..." ekle
+  if (plainText.length > 150) {
+    truncated += '...'
   }
-}
-</script>
 
-<style scoped>
-.volunteer-section {
-  background: var(--section-bg-color);
-  position: relative;
-  overflow: hidden;
+  return truncated
 }
 
-.volunteer-form {
-  background: var(--white-color);
-  padding: 35px;
-  border-radius: var(--border-radius-medium);
-}
 
-.volunteer-image {
-  border-radius: var(--border-radius-medium);
-  vertical-align: top;
-}
 
-.input-group-file {
-  border-radius: var(--border-radius-small);
-  position: relative;
-  overflow: hidden;
-}
 
-.input-group-file input[type="file"] {
-  position: relative;
-  z-index: 2;
-  opacity: 0;
-  cursor: pointer;
-}
+ const fetchPosts = async () => {
+  try {
+   debugger;
+    const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@zmpkmhdyfg`)
+    const data = await response.json()
+    posts.value = data.items
 
-.input-group-file label {
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  z-index: 1;
+    console.log('alperenitem',posts)
+  } catch (error) {
+    console.error('Yazılar yüklenirken hata:', error)
+  }
+ }
+
+ const formatDate = (date) => {
+ return new Date(date).toLocaleDateString('tr-TR')
+}
+ onMounted(() => {
+
+  fetchPosts()
+ })
+ </script>
+
+ <style scoped>
+ .posts-container {
+  display: grid;
+  gap: 20px;
+  padding: 20px;
+ }
+
+ .post-card {
+  border: 1px solid #eee;
+  padding: 15px;
+  border-radius: 8px;
+ }
+
+ .post-meta {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--grey-color);
-  color: var(--white-color);
-  cursor: pointer;
+  justify-content: space-between;
+  margin-top: 10px;
+ }
+
+ .fixed-size-image {
+  width: 500px;  /* sabit genişlik */
+  height: 300px; /* sabit yükseklik */
+  object-fit: cover; /* görüntüyü kırpmadan sığdırır */
 }
-</style>
+.post-content {
+  position: relative;
+}
+ </style>

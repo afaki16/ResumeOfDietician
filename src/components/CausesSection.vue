@@ -57,7 +57,7 @@ const causes = ref([
   {
     title: 'Children Education',
     description: 'Lorem Ipsum dolor sit amet, consectetur adipsicing kengan omeg kohm tokito',
-    image: new URL('@/assets/images/causes/group-african-kids-paying-attention-class.jpg', import.meta.url).href,
+    image: new URL('@/assets/images/slide/vv.jpeg', import.meta.url).href,
     progress: 75,
     raised: 18500,
     goal: 32000,
