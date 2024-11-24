@@ -1,5 +1,4 @@
 <template>
-
   <section id="section_6" class="section contact-section section-padding">
     <div class="container">
       <div class="row">
@@ -13,7 +12,8 @@
               <img
                 :src="contactPerson.image"
                 class="img-fluid avatar-image"
-                :alt="contactPerson.name">
+                :alt="contactPerson.name"
+              />
 
               <div class="d-flex flex-column justify-content-center ms-3">
                 <h6 class="mb-0">{{ contactPerson.name }}</h6>
@@ -23,16 +23,22 @@
 
             <!-- İletişim Detayları -->
             <div class="contact-info">
-              <h5 class="mb-3">Contact Information</h5>
+              <h5 class="mb-3">İletişim</h5>
 
               <div class="d-flex flex-wrap">
-                <div class="contact-info-item" v-for="(info, index) in contactInfo" :key="index">
+                <div
+                  class="contact-info-item"
+                  v-for="(info, index) in contactInfo"
+                  :key="index"
+                >
                   <div class="contact-info-icon">
                     <i :class="info.icon"></i>
                   </div>
                   <div class="contact-info-text">
                     <template v-if="info.type === 'link'">
-                      <a :href="info.href" :class="info.linkClass">{{ info.text }}</a>
+                      <a :href="info.href" :class="info.linkClass">{{
+                        info.text
+                      }}</a>
                     </template>
                     <template v-else>
                       <p>{{ info.text }}</p>
@@ -41,10 +47,12 @@
                 </div>
               </div>
 
-              <a href="#"
-                 class="custom-btn btn mt-3"
-                 @click.prevent="handleGetDirection">
-                Get Direction
+              <a
+                href="#"
+                class="custom-btn btn mt-3"
+                @click.prevent="handleGetDirection"
+              >
+                Google Yorumlar
               </a>
             </div>
           </div>
@@ -52,14 +60,19 @@
 
         <!-- İletişim Formu -->
         <div class="col-lg-5 col-12 mx-auto">
-          <form class="custom-form contact-form"
-                @submit.prevent="handleSubmit"
-                ref="contactForm">
+          <form
+            class="custom-form contact-form"
+            @submit.prevent="handleSubmit"
+            ref="contactForm"
+          >
             <h2>{{ formTitle }}</h2>
 
             <p class="mb-4">
-              Or, you can just send an email:
-              <a href="mailto:info@charity.org" class="text-primary">info@charity.org</a>
+              Ayrıca mail yolu ile bana ulaşabilirsiniz.
+              <br />
+              <a href="mailto:dytnisasakar@gmail.com" class="text-primary"
+                >dytnisasakar@gmail.com</a
+              >
             </p>
 
             <div class="row">
@@ -73,8 +86,9 @@
                     v-model="formData.name"
                     class="form-control"
                     placeholder="Name"
-                    required>
-                  <label for="name">Name</label>
+                    required
+                  />
+                  <label for="name">Ad-Soyad</label>
                 </div>
               </div>
 
@@ -88,8 +102,9 @@
                     v-model="formData.email"
                     class="form-control"
                     placeholder="Email"
-                    required>
-                  <label for="email">Email</label>
+                    required
+                  />
+                  <label for="email">E-mail</label>
                 </div>
               </div>
 
@@ -103,8 +118,9 @@
                     v-model="formData.subject"
                     class="form-control"
                     placeholder="Subject"
-                    required>
-                  <label for="subject">Subject</label>
+                    required
+                  />
+                  <label for="subject">Konu</label>
                 </div>
               </div>
 
@@ -118,15 +134,20 @@
                     class="form-control"
                     placeholder="Message"
                     required
-                    style="height: 120px"></textarea>
-                  <label for="message">Message</label>
+                    style="height: 120px"
+                  ></textarea>
+                  <label for="message">Mesaj</label>
                 </div>
               </div>
 
               <!-- Gönder Butonu -->
               <div class="col-lg-12 col-12">
-                <button type="submit" class="form-control" :disabled="isSubmitting">
-                  {{ isSubmitting ? 'Sending...' : 'Send Message' }}
+                <button
+                  type="submit"
+                  class="form-control"
+                  :disabled="isSubmitting"
+                >
+                  {{ isSubmitting ? 'Gönderiliyor...' : 'Mesajı Gönder' }}
                 </button>
               </div>
             </div>
@@ -136,26 +157,29 @@
     </div>
 
     <!-- Başarı Mesajı Modal -->
-    <div class="modal fade"
-         id="successModal"
-         tabindex="-1"
-         ref="successModal">
+    <div class="modal fade" id="successModal" tabindex="-1" ref="successModal">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title">Success!</h5>
-            <button type="button"
-                    class="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"></button>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
           </div>
           <div class="modal-body">
             Your message has been sent successfully. We'll get back to you soon!
           </div>
           <div class="modal-footer">
-            <button type="button"
-                    class="btn btn-primary"
-                    data-bs-dismiss="modal">Close</button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
           </div>
         </div>
       </div>
@@ -168,37 +192,31 @@ import { ref, reactive } from 'vue'
 import { Modal } from 'bootstrap'
 
 // Başlıklar
-const title = ref('Get in touch')
-const formTitle = ref('Contact form')
+const title = ref('İletişim')
+const formTitle = ref('Bilgi Formu')
 
 // İletişim kişisi bilgileri
 const contactPerson = ref({
-  name: 'Clara Barton',
-  position: 'HR & Office Manager',
-  image: new URL('@/assets/images/avatar/pretty-blonde-woman-wearing-white-t-shirt.jpg', import.meta.url).href
+  name: 'Nisa Sakar',
+  position: 'Diyetisyen',
+  image: new URL('@/assets/images/slide/Image.jpeg', import.meta.url).href,
 })
-
 // İletişim bilgileri
 const contactInfo = ref([
   {
-    type: 'text',
-    icon: 'bi bi-geo-alt',
-    text: 'Akershusstranda 20, 0150 Oslo, Norway'
-  },
-  {
     type: 'link',
     icon: 'bi bi-telephone',
-    text: '120-240-9600',
+    text: '+90-534-444-5656',
     href: 'tel: 120-240-9600',
-    linkClass: 'contact-link'
+    linkClass: 'contact-link',
   },
   {
     type: 'link',
     icon: 'bi bi-envelope',
-    text: 'donate@charity.org',
-    href: 'mailto:donate@charity.org',
-    linkClass: 'contact-link'
-  }
+    text: 'dytnisasakar@gmail.com',
+    href: 'mailto:dytnisasakar@gmail.com',
+    linkClass: 'contact-link',
+  },
 ])
 
 // Form verisi
@@ -206,7 +224,7 @@ const formData = reactive({
   name: '',
   email: '',
   subject: '',
-  message: ''
+  message: '',
 })
 
 const isSubmitting = ref(false)
@@ -225,12 +243,11 @@ const handleSubmit = async () => {
     console.log('Form submitted:', formData)
 
     // Formu temizle
-    Object.keys(formData).forEach(key => formData[key] = '')
+    Object.keys(formData).forEach(key => (formData[key] = ''))
 
     // Başarı modalını göster
     const modal = new Modal(successModal.value)
     modal.show()
-
   } catch (error) {
     console.error('Error submitting form:', error)
     alert('An error occurred. Please try again.')
@@ -344,7 +361,7 @@ textarea.form-control {
   padding: 1rem;
 }
 
-button[type="submit"] {
+button[type='submit'] {
   background: var(--primary-color);
   border: none;
   border-radius: var(--border-radius-large);
@@ -354,11 +371,11 @@ button[type="submit"] {
   margin-top: 1rem;
 }
 
-button[type="submit"]:hover {
+button[type='submit']:hover {
   background: var(--custom-btn-bg-hover-color);
 }
 
-button[type="submit"]:disabled {
+button[type='submit']:disabled {
   background: var(--border-color);
   cursor: not-allowed;
 }

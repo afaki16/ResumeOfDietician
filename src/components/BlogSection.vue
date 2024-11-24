@@ -48,7 +48,6 @@ const sectionTitle = ref('Bilgilendiren Paylaşımalar')
 const posts = ref([])
 const cleanContent = content => {
   content = content.replace(/<img src="https:\/\/medium.com\/_\/stat?.+?>/g, '')
-  console.log('alperem', content.trim())
 
   const imgMatch = content.match(/<img[^>]+src="([^">]+)"/)
   postImage.value = imgMatch ? imgMatch[1] : ''
@@ -80,8 +79,6 @@ const fetchPosts = async () => {
     )
     const data = await response.json()
     posts.value = data.items
-
-    console.log('alperenitem', posts)
   } catch (error) {
     console.error('Yazılar yüklenirken hata:', error)
   }

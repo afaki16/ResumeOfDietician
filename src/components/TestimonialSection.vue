@@ -6,21 +6,27 @@
           <h2 class="mb-lg-3">{{ sectionTitle }}</h2>
 
           <!-- Testimonial Carousel -->
-          <div id="testimonial-carousel"
-               class="carousel carousel-fade slide"
-               data-bs-ride="carousel">
-
+          <div
+            id="testimonial-carousel"
+            class="carousel carousel-fade slide"
+            data-bs-ride="carousel"
+          >
             <!-- Carousel İçerik -->
             <div class="carousel-inner">
-              <div v-for="(testimonial, index) in testimonials"
-                   :key="index"
-                   :class="['carousel-item', index === 0 ? 'active' : '']">
+              <div
+                v-for="(testimonial, index) in testimonials"
+                :key="index"
+                :class="['carousel-item', index === 0 ? 'active' : '']"
+              >
                 <div class="carousel-caption">
                   <h4 class="carousel-title">
                     {{ testimonial.content }}
                   </h4>
                   <small>
-                    <span class="carousel-name-title">{{ testimonial.name }}</span>,
+                    <span class="carousel-name-title">{{
+                      testimonial.name
+                    }}</span
+                    >,
                     {{ testimonial.position }}
                   </small>
                 </div>
@@ -29,31 +35,45 @@
 
             <!-- Avatar Göstergeleri -->
             <ol class="carousel-indicators">
-              <li v-for="(testimonial, index) in testimonials"
-                  :key="index"
-                  :class="{ active: index === 0 }"
-                  :data-bs-target="'#testimonial-carousel'"
-                  :data-bs-slide-to="index">
-                <img :src="testimonial.avatar"
-                     :alt="testimonial.name"
-                     class="img-fluid rounded-circle avatar-image">
+              <li
+                v-for="(testimonial, index) in testimonials"
+                :key="index"
+                :class="{ active: index === 0 }"
+                :data-bs-target="'#testimonial-carousel'"
+                :data-bs-slide-to="index"
+              >
+                <img
+                  :src="testimonial.avatar"
+                  :alt="testimonial.name"
+                  class="img-fluid rounded-circle avatar-image"
+                />
               </li>
             </ol>
 
             <!-- Kontrol Butonları -->
-            <button class="carousel-control-prev"
-                    type="button"
-                    data-bs-target="#testimonial-carousel"
-                    data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-bs-target="#testimonial-carousel"
+              data-bs-slide="prev"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
               <span class="visually-hidden">Previous</span>
             </button>
 
-            <button class="carousel-control-next"
-                    type="button"
-                    data-bs-target="#testimonial-carousel"
-                    data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target="#testimonial-carousel"
+              data-bs-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
               <span class="visually-hidden">Next</span>
             </button>
           </div>
@@ -67,34 +87,50 @@
 import { ref, onMounted } from 'vue'
 import { Carousel } from 'bootstrap'
 
-const sectionTitle = ref('Danışan Yorumları')
+const sectionTitle = ref('Danışan Görüşleri')
 
 // Testimonial verileri
 const testimonials = ref([
   {
     name: 'Maria',
     position: 'Boss',
-    content: 'Lorem Ipsum dolor sit amet, consectetur adipsicing kengan omeg kohm tokito charity theme',
-    avatar: new URL('@/assets/images/avatar/portrait-beautiful-young-woman-standing-grey-wall.jpg', import.meta.url).href
+    content:
+      'Lorem Ipsum dolor sit amet, consectetur adipsicing kengan omeg kohm tokito charity theme',
+    avatar: new URL(
+      '@/assets/images/avatar/portrait-beautiful-young-woman-standing-grey-wall.jpg',
+      import.meta.url,
+    ).href,
   },
   {
     name: 'Thomas',
     position: 'Partner',
-    content: 'Sed leo nisl, posuere at molestie ac, suscipit auctor mauris quis metus tempor orci',
-    avatar: new URL('@/assets/images/avatar/portrait-young-redhead-bearded-male.jpg', import.meta.url).href
+    content:
+      'Sed leo nisl, posuere at molestie ac, suscipit auctor mauris quis metus tempor orci',
+    avatar: new URL(
+      '@/assets/images/avatar/portrait-young-redhead-bearded-male.jpg',
+      import.meta.url,
+    ).href,
   },
   {
     name: 'Jane',
     position: 'Advisor',
-    content: 'Lorem Ipsum dolor sit amet, consectetur adipsicing kengan omeg kohm tokito charity theme',
-    avatar: new URL('@/assets/images/avatar/pretty-blonde-woman-wearing-white-t-shirt.jpg', import.meta.url).href
+    content:
+      'Lorem Ipsum dolor sit amet, consectetur adipsicing kengan omeg kohm tokito charity theme',
+    avatar: new URL(
+      '@/assets/images/avatar/pretty-blonde-woman-wearing-white-t-shirt.jpg',
+      import.meta.url,
+    ).href,
   },
   {
     name: 'Bob',
     position: 'Entreprenuer',
-    content: 'Sed leo nisl, posuere at molestie ac, suscipit auctor mauris quis metus tempor orci',
-    avatar: new URL('@/assets/images/avatar/studio-portrait-emotional-happy-funny.jpg', import.meta.url).href
-  }
+    content:
+      'Sed leo nisl, posuere at molestie ac, suscipit auctor mauris quis metus tempor orci',
+    avatar: new URL(
+      '@/assets/images/avatar/studio-portrait-emotional-happy-funny.jpg',
+      import.meta.url,
+    ).href,
+  },
 ])
 
 // Carousel başlatma
@@ -103,8 +139,8 @@ onMounted(() => {
   if (carouselElement) {
     new Carousel(carouselElement, {
       interval: 5000, // 5 saniye otomatik geçiş
-      touch: true,    // dokunmatik destek
-      pause: 'hover'  // hover'da durdurma
+      touch: true, // dokunmatik destek
+      pause: 'hover', // hover'da durdurma
     })
   }
 })
@@ -239,6 +275,4 @@ onMounted(() => {
 }
 </style>
 
-<script>
-
-</script>
+<script></script>

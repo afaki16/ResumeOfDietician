@@ -1,57 +1,5 @@
 <template>
   <footer class="site-footer">
-    <!-- Ana Footer İçeriği -->
-    <div class="container">
-      <div class="row">
-        <!-- Logo ve Açıklama -->
-        <div class="col-lg-3 col-12 mb-4">
-          <img :src="logoSrc" class="logo img-fluid" alt="Kind Heart Charity">
-          <p class="mt-3">{{ description }}</p>
-        </div>
-
-        <!-- Hızlı Linkler -->
-        <div class="col-lg-4 col-md-6 col-12 mb-4">
-          <h5 class="site-footer-title mb-3">Quick Links</h5>
-
-          <ul class="footer-menu">
-            <li v-for="link in quickLinks" :key="link.text">
-              <a :href="link.url" class="footer-menu-link">
-                {{ link.text }}
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <!-- İletişim Bilgileri -->
-        <div class="col-lg-4 col-md-6 col-12 mx-auto">
-          <h5 class="site-footer-title mb-3">Contact Information</h5>
-
-          <p class="text-white d-flex mb-2">
-            <i class="bi-telephone me-2"></i>
-            <a :href="'tel:' + contactInfo.phone" class="site-footer-link">
-              {{ contactInfo.phone }}
-            </a>
-          </p>
-
-          <p class="text-white d-flex mb-2">
-            <i class="bi-envelope me-2"></i>
-            <a :href="'mailto:' + contactInfo.email" class="site-footer-link">
-              {{ contactInfo.email }}
-            </a>
-          </p>
-
-          <p class="text-white d-flex mt-3">
-            <i class="bi-geo-alt me-2"></i>
-            {{ contactInfo.address }}
-          </p>
-
-          <a href="#" class="custom-btn btn mt-3" @click.prevent="handleGetDirection">
-            Get Direction
-          </a>
-        </div>
-      </div>
-    </div>
-
     <!-- Alt Footer - Copyright ve Sosyal Medya -->
     <div class="site-footer-bottom">
       <div class="container">
@@ -60,20 +8,30 @@
           <div class="col-lg-6 col-md-7 col-12">
             <p class="copyright-text mb-0">
               Copyright © {{ currentYear }}
-              <a href="#" class="site-footer-link">Kind Heart</a>
-              Charity Org.
-              Design: <a href="https://templatemo.com" target="_blank" class="site-footer-link">TemplateMo</a>
+
+              Bu web sitesi
+              <a
+                href="https://templatemo.com"
+                target="_blank"
+                class="site-footer-link"
+                ><strong>alperenfaki@gmail.com</strong></a
+              >
+              tarafından oluşturulmuştur.
             </p>
           </div>
 
           <!-- Sosyal Medya İkonları -->
-          <div class="col-lg-6 col-md-5 col-12 d-flex justify-content-center align-items-center mx-auto">
+          <div
+            class="col-lg-6 col-md-5 col-12 d-flex justify-content-center align-items-center mx-auto"
+          >
             <ul class="social-icon">
               <li v-for="social in socialLinks" :key="social.platform">
-                <a :href="social.url"
-                   :class="['social-icon-link', social.icon]"
-                   :target="social.external ? '_blank' : '_self'"
-                   :title="social.platform">
+                <a
+                  :href="social.url"
+                  :class="['social-icon-link', social.icon]"
+                  :target="social.external ? '_blank' : '_self'"
+                  :title="social.platform"
+                >
                 </a>
               </li>
             </ul>
@@ -87,30 +45,8 @@
 <script setup>
 import { ref, computed } from 'vue'
 
-// Logo
-const logoSrc = new URL('@/assets/images/logo.png', import.meta.url).href
-
-// Açıklama
-const description = ref('Kind Heart Charity - Making the world a better place.')
-
 // Güncel yıl
 const currentYear = computed(() => new Date().getFullYear())
-
-// Hızlı linkler
-const quickLinks = ref([
-  { text: 'Our Story', url: '#' },
-  { text: 'Newsroom', url: '#' },
-  { text: 'Causes', url: '#' },
-  { text: 'Become a volunteer', url: '#' },
-  { text: 'Partner with us', url: '#' }
-])
-
-// İletişim bilgileri
-const contactInfo = ref({
-  phone: '120-240-9600',
-  email: 'donate@charity.org',
-  address: 'Akershusstranda 20, 0150 Oslo, Norway'
-})
 
 // Sosyal medya linkleri
 const socialLinks = ref([
@@ -118,15 +54,13 @@ const socialLinks = ref([
   { platform: 'Facebook', icon: 'bi-facebook', url: '#', external: true },
   { platform: 'Instagram', icon: 'bi-instagram', url: '#', external: true },
   { platform: 'LinkedIn', icon: 'bi-linkedin', url: '#', external: true },
-  { platform: 'YouTube', icon: 'bi-youtube', url: 'https://youtube.com/templatemo', external: true }
+  {
+    platform: 'YouTube',
+    icon: 'bi-youtube',
+    url: 'https://youtube.com/templatemo',
+    external: true,
+  },
 ])
-
-// Yol tarifi
-const handleGetDirection = () => {
-  const address = encodeURIComponent(contactInfo.value.address)
-  const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${address}`
-  window.open(mapsUrl, '_blank')
-}
 </script>
 
 <style scoped>
