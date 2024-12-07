@@ -1,58 +1,62 @@
+<script setup>
+import { ref } from 'vue'
+
+const heroHeight = ref('300px')
+</script>
+
 <template>
-  <section class="hero-section hero-section-full-height">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-lg-12 col-12 p-0">
-          <div id="hero-slide" class="carousel carousel-fade slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-              <div v-for="(slide, index) in slides"
-                   :key="index"
-                   :class="['carousel-item', index === 0 ? 'active' : '']">
-                <img :src="slide.image" class="carousel-image img-fluid" :alt="slide.title">
-                <div class="carousel-caption d-flex flex-column justify-content-end">
-                  <h1>{{ slide.title }}</h1>
-                  <p>{{ slide.description }}</p>
-                </div>
-              </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#hero-slide" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#hero-slide" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
-          </div>
-        </div>
-      </div>
+  <div class="hero-container">
+    <div class="hero-content">
+      <h1 class="name">Diyetisyen Nisa Sakar</h1>
     </div>
-  </section>
+    <svg
+      class="wave"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 1440 320"
+      preserveAspectRatio="none"
+    >
+      <path
+        fill="#ffffff"
+        d="M0,80 C920,80,1120,300,1440,160 L1440,320 L0,320 Z"
+      ></path>
+    </svg>
+  </div>
 </template>
 
-<script setup>
-import { ref, onMounted } from 'vue'
-import { Carousel } from 'bootstrap'
+<style scoped>
+.hero-container {
+  width: 100%;
+  height: v-bind(heroHeight);
+  background-color: #4758ff;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-const slides = ref([
-  {
-    image: new URL('@/assets/images/slide/vv.jpeg', import.meta.url).href,
-    title: 'be a Kind Heart',
-    description: 'Professional charity theme based on Bootstrap 5.2.2'
-  },
-  {
-    image: new URL('@/assets/images/slide/last.jpeg', import.meta.url).href,
-    title: 'Non-profit',
-    description: 'You can support us to grow more'
-  },
-  {
-    image: new URL('@/assets/images/slide/dd.jpeg', import.meta.url).href,
-    title: 'Humanity',
-    description: 'Please tell your friends about our website'
-  }
-])
+.hero-content {
+  max-width: 1200px;
+  width: 100%;
+  padding: 20px;
+  position: relative;
+  z-index: 1;
+}
 
-onMounted(() => {
-  new Carousel(document.getElementById('hero-slide'))
-})
-</script>
+.name {
+  color: white;
+  font-size: 5rem;
+  font-weight: bold;
+  text-align: center;
+  margin: 0;
+}
+
+.wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  transform: translateY(2px);
+}
+</style>

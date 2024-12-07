@@ -48,6 +48,7 @@ const sectionTitle = ref('Bilgilendiren Paylaşımalar')
 const posts = ref([])
 const cleanContent = content => {
   content = content.replace(/<img src="https:\/\/medium.com\/_\/stat?.+?>/g, '')
+  console.log('alperem', content.trim())
 
   const imgMatch = content.match(/<img[^>]+src="([^">]+)"/)
   postImage.value = imgMatch ? imgMatch[1] : ''
@@ -121,7 +122,11 @@ onMounted(() => {
 }
 
 .date-chip {
-  background: linear-gradient(45deg, #0ba56a, #08866b);
+  background: linear-gradient(
+    45deg,
+    var(--primary-color),
+    var(--primary-color)
+  );
   padding: 6px 16px;
   border-radius: 20px;
   font-size: 14px;

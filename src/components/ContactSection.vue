@@ -193,7 +193,7 @@ import { Modal } from 'bootstrap'
 
 // Başlıklar
 const title = ref('İletişim')
-const formTitle = ref('Bilgi Formu')
+const formTitle = ref('Seans Planlamaları')
 
 // İletişim kişisi bilgileri
 const contactPerson = ref({

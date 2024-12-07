@@ -1,11 +1,10 @@
 <template>
   <div id="app">
-    <site-header />
     <nav-bar />
     <main role="main">
       <hero-section />
-      <welcome-section />
       <about-section />
+      <welcome-section />
       <logo-slider />
       <testimonial-section />
       <blog-section />
