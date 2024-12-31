@@ -14,16 +14,16 @@ import { ref, onMounted } from 'vue'
 const props = defineProps({
   number: {
     type: Number,
-    required: true
+    required: true,
   },
   text: {
     type: String,
-    required: true
+    required: true,
   },
   suffix: {
     type: String,
-    default: ''
-  }
+    default: '',
+  },
 })
 
 const displayNumber = ref(0)
@@ -49,7 +49,7 @@ const animateCount = () => {
 }
 
 onMounted(() => {
-  const observer = new IntersectionObserver((entries) => {
+  const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         animateCount()

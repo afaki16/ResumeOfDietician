@@ -1,45 +1,43 @@
 <template>
-  <footer class="site-footer">
-    <!-- Alt Footer - Copyright ve Sosyal Medya -->
-    <div class="site-footer-bottom">
-      <div class="container">
-        <div class="row">
-          <!-- Copyright -->
-          <div class="col-lg-6 col-md-7 col-12">
-            <p class="copyright-text mb-0">
-              Copyright © {{ currentYear }}
+  <!-- Alt Footer - Copyright ve Sosyal Medya -->
+  <div class="site-footer-bottom">
+    <div class="container">
+      <div class="row">
+        <!-- Copyright -->
+        <div class="col-lg-6 col-md-7 col-12">
+          <p class="copyright-text mb-0">
+            Copyright © {{ currentYear }}
 
-              Bu web sitesi
+            Bu web sitesi
+            <a
+              href="mailto:alperenfaki@gmail.com"
+              target="_blank"
+              class="site-footer-link"
+              ><strong>alperenfaki@gmail.com</strong></a
+            >
+            tarafından oluşturulmuştur.
+          </p>
+        </div>
+
+        <!-- Sosyal Medya İkonları -->
+        <div
+          class="col-lg-6 col-md-5 col-12 d-flex justify-content-center align-items-center mx-auto"
+        >
+          <ul class="social-icon">
+            <li v-for="social in socialLinks" :key="social.platform">
               <a
-                href="https://templatemo.com"
-                target="_blank"
-                class="site-footer-link"
-                ><strong>alperenfaki@gmail.com</strong></a
+                :href="social.url"
+                :class="['social-icon-link', social.icon]"
+                :target="social.external ? '_blank' : '_self'"
+                :title="social.platform"
               >
-              tarafından oluşturulmuştur.
-            </p>
-          </div>
-
-          <!-- Sosyal Medya İkonları -->
-          <div
-            class="col-lg-6 col-md-5 col-12 d-flex justify-content-center align-items-center mx-auto"
-          >
-            <ul class="social-icon">
-              <li v-for="social in socialLinks" :key="social.platform">
-                <a
-                  :href="social.url"
-                  :class="['social-icon-link', social.icon]"
-                  :target="social.external ? '_blank' : '_self'"
-                  :title="social.platform"
-                >
-                </a>
-              </li>
-            </ul>
-          </div>
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
-  </footer>
+  </div>
 </template>
 
 <script setup>
@@ -50,14 +48,22 @@ const currentYear = computed(() => new Date().getFullYear())
 
 // Sosyal medya linkleri
 const socialLinks = ref([
-  { platform: 'Twitter', icon: 'bi-twitter', url: '#', external: true },
-  { platform: 'Facebook', icon: 'bi-facebook', url: '#', external: true },
-  { platform: 'Instagram', icon: 'bi-instagram', url: '#', external: true },
-  { platform: 'LinkedIn', icon: 'bi-linkedin', url: '#', external: true },
   {
-    platform: 'YouTube',
-    icon: 'bi-youtube',
-    url: 'https://youtube.com/templatemo',
+    platform: 'Instagram',
+    icon: 'bi-instagram',
+    url: 'https://www.instagram.com/alperenfakii/',
+    external: true,
+  },
+  {
+    platform: 'LinkedIn',
+    icon: 'bi-linkedin',
+    url: 'https://www.linkedin.com/in/alperen-faki/',
+    external: true,
+  },
+  {
+    platform: 'Github',
+    icon: 'bi-github',
+    url: 'https://github.com/afaki16',
     external: true,
   },
 ])

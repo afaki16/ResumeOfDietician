@@ -2,11 +2,11 @@
   <div id="app">
     <nav-bar />
     <main role="main">
-      <hero-section />
-      <about-section />
       <welcome-section />
+      <about-section />
+      <card-section />
       <logo-slider />
-      <testimonial-section />
+      <price-section />
       <blog-section />
       <contact-section />
     </main>
@@ -15,12 +15,11 @@
 </template>
 
 <script setup>
-import SiteHeader from './components/layout/SiteHeader.vue'
-import HeroSection from './components/HeroSection.vue'
+import CardSection from './components/CardSection.vue'
 import WelcomeSection from './components/WelcomeSection.vue'
 import AboutSection from './components/AboutSection.vue'
 import BlogSection from './components/BlogSection.vue'
-import TestimonialSection from './components/TestimonialSection.vue'
+import PriceSection from './components/PriceSection.vue'
 import ContactSection from './components/ContactSection.vue'
 import SiteFooter from './components/layout/SiteFooter.vue'
 import LogoSlider from './components/LogoSlider.vue'

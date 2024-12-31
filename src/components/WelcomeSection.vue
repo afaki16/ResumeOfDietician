@@ -1,59 +1,61 @@
 <template>
-  <section class="section section-padding">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-10 col-12 text-center mx-auto">
-          <h2 class="mb-5">{{ title }}</h2>
-        </div>
-
-        <div v-for="(block, index) in featuredBlocks"
-             :key="index"
-             :class="blockClasses">
-          <div class="featured-block d-flex justify-content-center align-items-center">
-            <a :href="block.link" class="d-block">
-              <img :src="block.image" class="featured-block-image img-fluid" :alt="block.title">
-              <p class="featured-block-text">
-                <strong v-if="block.boldText">{{ block.boldText }}</strong>
-                {{ block.text }}
-              </p>
-            </a>
-          </div>
-        </div>
-      </div>
+  <div id="top" class="welcome-container">
+    <div class="welcome-content">
+      <h1 class="name">Diyetisyen Nisa Sakar</h1>
     </div>
-  </section>
+    <svg
+      class="wave"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 1440 320"
+      preserveAspectRatio="none"
+    >
+      <path
+        fill="#ffffff"
+        d="M0,80 C920,80,1120,300,1440,160 L1440,320 L0,320 Z"
+      ></path>
+    </svg>
+  </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 
-const title = ref('Eğer Beraber Çalışırsak...')
-const blockClasses = 'col-lg-3 col-md-6 col-12 mb-4 mb-lg-0'
-
-const featuredBlocks = ref([
-  {
-    image: new URL('@/assets/images/icons/zayiflama.jpg', import.meta.url).href,
-    link: 'donate.html',
-    boldText: 'Zayıflama',
-    text: 'Seçenekleri'
-  },
-  {
-    image: new URL('@/assets/images/icons/kiloalma.jpg', import.meta.url).href,
-    link: 'donate.html',
-    boldText: 'Kilo Alma ',
-    text: 'Seçenekleri'
-  },
-  {
-    image: new URL('@/assets/images/icons/saglik.jpg', import.meta.url).href,
-    link: 'donate.html',
-    boldText: 'Sağlıklı ',
-    text: 'Yaşam'
-  },
-  {
-    image: new URL('@/assets/images/icons/sporcu.jpg', import.meta.url).href,
-    link: 'donate.html',
-    boldText: 'Sporcu ',
-    text: 'Beslenmesi'
-  }
-])
+const welcomeHeight = ref('300px')
 </script>
+
+<style scoped>
+.welcome-container {
+  width: 100%;
+  height: v-bind(welcomeHeight);
+  background-color: #4758ff;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.welcome-content {
+  max-width: 1200px;
+  width: 100%;
+  padding: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.name {
+  color: white;
+  font-size: 4rem;
+  text-align: center;
+  margin: 0;
+}
+
+.wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  transform: translateY(2px);
+}
+</style>

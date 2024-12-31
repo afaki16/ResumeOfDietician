@@ -5,23 +5,8 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
   },
-  {
-    path: '/news',
-    name: 'News',
-    component: () => import('@/views/News.vue')
-  },
-  {
-    path: '/news-detail',
-    name: 'NewsDetail',
-    component: () => import('@/views/NewsDetail.vue')
-  },
-  {
-    path: '/donate',
-    name: 'Donate',
-    component: () => import('@/views/Donate.vue')
-  }
 ]
 
 const router = createRouter({
@@ -31,11 +16,11 @@ const router = createRouter({
     if (to.hash) {
       return {
         el: to.hash,
-        behavior: 'smooth'
+        behavior: 'smooth',
       }
     }
     return savedPosition || { top: 0 }
-  }
+  },
 })
 
 export default router

@@ -23,8 +23,6 @@
 
             <!-- İletişim Detayları -->
             <div class="contact-info">
-              <h5 class="mb-3">İletişim</h5>
-
               <div class="d-flex flex-wrap">
                 <div
                   class="contact-info-item"
@@ -46,141 +44,77 @@
                   </div>
                 </div>
               </div>
-
-              <a
-                href="#"
-                class="custom-btn btn mt-3"
-                @click.prevent="handleGetDirection"
-              >
-                Google Yorumlar
-              </a>
             </div>
           </div>
         </div>
 
         <!-- İletişim Formu -->
         <div class="col-lg-5 col-12 mx-auto">
-          <form
-            class="custom-form contact-form"
-            @submit.prevent="handleSubmit"
-            ref="contactForm"
-          >
-            <h2>{{ formTitle }}</h2>
-
-            <p class="mb-4">
-              Ayrıca mail yolu ile bana ulaşabilirsiniz.
-              <br />
-              <a href="mailto:dytnisasakar@gmail.com" class="text-primary"
-                >dytnisasakar@gmail.com</a
-              >
-            </p>
-
-            <div class="row">
-              <!-- İsim Alanı -->
-              <div class="col-lg-6 col-md-6 col-12">
-                <div class="form-floating">
-                  <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    v-model="formData.name"
-                    class="form-control"
-                    placeholder="Name"
-                    required
-                  />
-                  <label for="name">Ad-Soyad</label>
-                </div>
-              </div>
-
-              <!-- Email Alanı -->
-              <div class="col-lg-6 col-md-6 col-12">
-                <div class="form-floating">
-                  <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    v-model="formData.email"
-                    class="form-control"
-                    placeholder="Email"
-                    required
-                  />
-                  <label for="email">E-mail</label>
-                </div>
-              </div>
-
-              <!-- Konu Alanı -->
-              <div class="col-lg-12 col-12">
-                <div class="form-floating">
-                  <input
-                    type="text"
-                    name="subject"
-                    id="subject"
-                    v-model="formData.subject"
-                    class="form-control"
-                    placeholder="Subject"
-                    required
-                  />
-                  <label for="subject">Konu</label>
-                </div>
-              </div>
-
-              <!-- Mesaj Alanı -->
-              <div class="col-lg-12 col-12">
-                <div class="form-floating">
-                  <textarea
-                    id="message"
-                    name="message"
-                    v-model="formData.message"
-                    class="form-control"
-                    placeholder="Message"
-                    required
-                    style="height: 120px"
-                  ></textarea>
-                  <label for="message">Mesaj</label>
-                </div>
-              </div>
-
-              <!-- Gönder Butonu -->
-              <div class="col-lg-12 col-12">
-                <button
-                  type="submit"
-                  class="form-control"
-                  :disabled="isSubmitting"
+          <form class="custom-form contact-form">
+            <div class="contact-image-wrap d-flex flex-wrap">
+              <i
+                class="bi bi-linkedin text-2xl"
+                style="font-size: 24px; color: #0a66c2"
+              ></i>
+              <div class="d-flex flex-column justify-content-center ms-3">
+                <a
+                  href="https://www.linkedin.com/in/nisa-sakar-783804243/?originalSubdomain=tr"
+                  target="_blank"
+                  class="text-decoration-none text-dark"
                 >
-                  {{ isSubmitting ? 'Gönderiliyor...' : 'Mesajı Gönder' }}
-                </button>
+                  <h6 class="mb-0">LinkedIn - Nisa Sakar</h6>
+                </a>
+              </div>
+            </div>
+            <div class="contact-image-wrap d-flex flex-wrap">
+              <i
+                class="bi bi-instagram text-2xl"
+                style="font-size: 24px; color: #e4405f"
+              ></i>
+
+              <div class="d-flex flex-column justify-content-center ms-3">
+                <a
+                  href="https://www.instagram.com/diyetisyennisakar"
+                  target="_blank"
+                  class="text-decoration-none text-dark"
+                >
+                  <h6 class="mb-0">Instagram - diyetisyennisakar</h6>
+                </a>
+              </div>
+            </div>
+
+            <div class="contact-image-wrap d-flex flex-wrap">
+              <i
+                class="bi bi-whatsapp text-2xl"
+                style="font-size: 24px; color: #25d366"
+              ></i>
+
+              <div class="d-flex flex-column justify-content-center ms-3">
+                <a
+                  href="https://wa.me/905365947718"
+                  target="_blank"
+                  class="text-decoration-none text-dark"
+                >
+                  <h6 class="mb-0">Whatsapp - 0 536 594 77 18</h6>
+                </a>
+              </div>
+            </div>
+            <div class="contact-image-wrap d-flex flex-wrap">
+              <i
+                class="bi bi-google-play"
+                style="font-size: 24px; color: #4285f4"
+              ></i>
+              <div class="d-flex flex-column justify-content-center ms-3">
+                <a
+                  href="https://www.google.com/search?sca_esv=d68bc316d57e2cfd&tbm=lcl&sxsrf=ADLYWIL_eB3KQ0Dn0DJDVNQYQ0Zocxf6vg:1735228783056&q=Diyetisyen+Nisa+Sakar+Yorumlar&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxIxNDIyMTSyMDYxNDWyNDc3M7I0NN3AyPiKUc4lszK1JLO4MjVPwS-zOFEhODE7sUghMr-oNDcnsWgRKwEFAAM2O-hdAAAA&rldimm=12241283415297762915&hl=tr-TR&sa=X&ved=2ahUKEwjF9t755sWKAxVDAtsEHQ-fJ5YQ9fQKegQIKhAF&biw=1536&bih=731&dpr=1.25#lkt=LocalPoiReviews"
+                  target="_blank"
+                  class="text-decoration-none text-dark"
+                >
+                  <h6 class="mb-0">Google Yorumlar</h6>
+                </a>
               </div>
             </div>
           </form>
-        </div>
-      </div>
-    </div>
-
-    <!-- Başarı Mesajı Modal -->
-    <div class="modal fade" id="successModal" tabindex="-1" ref="successModal">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Success!</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            Your message has been sent successfully. We'll get back to you soon!
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-primary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
-          </div>
         </div>
       </div>
     </div>
@@ -188,12 +122,10 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
-import { Modal } from 'bootstrap'
+import { ref } from 'vue'
 
 // Başlıklar
 const title = ref('İletişim')
-const formTitle = ref('Seans Planlamaları')
 
 // İletişim kişisi bilgileri
 const contactPerson = ref({
@@ -206,8 +138,8 @@ const contactInfo = ref([
   {
     type: 'link',
     icon: 'bi bi-telephone',
-    text: '+90-534-444-5656',
-    href: 'tel: 120-240-9600',
+    text: '+90-536-594-7718',
+    href: 'https://wa.me/905365947718',
     linkClass: 'contact-link',
   },
   {
@@ -218,51 +150,6 @@ const contactInfo = ref([
     linkClass: 'contact-link',
   },
 ])
-
-// Form verisi
-const formData = reactive({
-  name: '',
-  email: '',
-  subject: '',
-  message: '',
-})
-
-const isSubmitting = ref(false)
-const contactForm = ref(null)
-const successModal = ref(null)
-
-// Form gönderimi
-const handleSubmit = async () => {
-  try {
-    isSubmitting.value = true
-
-    // API çağrısı simülasyonu
-    await new Promise(resolve => setTimeout(resolve, 1500))
-
-    // Form verilerini konsola yazdır (gerçek uygulamada API'ye gönderilecek)
-    console.log('Form submitted:', formData)
-
-    // Formu temizle
-    Object.keys(formData).forEach(key => (formData[key] = ''))
-
-    // Başarı modalını göster
-    const modal = new Modal(successModal.value)
-    modal.show()
-  } catch (error) {
-    console.error('Error submitting form:', error)
-    alert('An error occurred. Please try again.')
-  } finally {
-    isSubmitting.value = false
-  }
-}
-
-// Yol tarifi
-const handleGetDirection = () => {
-  // Google Maps URL'si
-  const address = encodeURIComponent('Akershusstranda 20, 0150 Oslo, Norway')
-  const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${address}`
-  window.open(mapsUrl, '_blank')
-}
 </script>
 
 <style scoped>

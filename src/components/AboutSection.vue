@@ -47,6 +47,7 @@
 
             <div class="col-lg-6 col-md-6 col-12">
               <div class="custom-text-box d-flex flex-wrap d-lg-block mb-lg-0">
+                <h5 class="mb-3">Toplam</h5>
                 <counter-block
                   v-for="(counter, index) in counters"
                   :key="index"
@@ -55,6 +56,8 @@
                   :suffix="counter.suffix"
                 />
               </div>
+
+              <p>* Veriler aylık olarak güncellenmektedir.</p>
             </div>
           </div>
         </div>

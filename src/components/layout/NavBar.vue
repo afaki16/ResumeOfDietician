@@ -4,9 +4,6 @@
     <nav :class="['navbar', { scrolled: isScrolled }]">
       <div class="navbar-container">
         <!-- Logo -->
-        <div class="logo">
-          <img src="@/assets/images/ss.png" alt="Logo" class="logo-image" />
-        </div>
 
         <!-- Mobil Menü Butonu -->
         <div class="mobile-menu" @click="toggleMenu">
@@ -51,9 +48,14 @@ const menuItems = ref([
   { text: 'Ana Sayfa', link: '#top' },
   { text: 'Hakkımda', link: '#section_2' },
   { text: 'Blog', link: '#section_3' },
-  { text: 'Görüşler', link: '#section_4' },
+  { text: 'Hizmetler', link: '#section_5' },
   { text: 'İletişim', link: '#section_6' },
-  { text: 'Bana Ulaşın', link: '#section_6', isButton: true },
+  {
+    text: 'Fırsat Köşesi',
+    link: '#section_4',
+    icon: '🎁',
+    isButton: true,
+  },
 ])
 
 const handleScroll = () => {

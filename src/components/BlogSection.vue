@@ -80,6 +80,7 @@ const fetchPosts = async () => {
     )
     const data = await response.json()
     posts.value = data.items
+    console.log('alşper', data)
   } catch (error) {
     console.error('Yazılar yüklenirken hata:', error)
   }
