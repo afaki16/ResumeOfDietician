@@ -1,27 +1,30 @@
+<!-- LogoSlider.vue
 <template>
   <div class="slider-wrapper">
     <div class="logo-slider-container">
       <h2 class="mb-5">{{ title }}</h2>
-
-      <div class="logo-slider" ref="sliderRef">
-        <div class="slider-track">
-          <div
-            v-for="(logo, index) in duplicatedLogos"
-            :key="index"
-            class="logo-item"
-          >
-            <img :src="logo.image" :alt="logo.name" class="logo-image" />
-          </div>
+      <div class="logo-slider">
+        <div class="logo-track">
+          <TransitionGroup name="fade">
+            <div
+              v-for="logo in currentLogos"
+              :key="logo.name"
+              class="logo-item"
+            >
+              <img :src="logo.image" :alt="logo.name" class="logo-image" />
+            </div>
+          </TransitionGroup>
         </div>
       </div>
     </div>
   </div>
 </template>
+
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 
 const title = ref('Kurumsal Referanslarımız')
-const sliderRef = ref(null)
+const currentIndex = ref(0)
 
 const logos = ref([
   {
@@ -30,55 +33,51 @@ const logos = ref([
   },
   {
     name: 'İstanbulspor',
-    image: new URL(
-      '@/assets/images/references/istanbulspor.png',
-      import.meta.url,
-    ).href,
+    image: new URL('@/assets/images/references/istanbulspor.png', import.meta.url).href,
   },
   {
     name: 'Heltia',
-    image: new URL('@/assets/images/references/heltia.png', import.meta.url)
-      .href,
+    image: new URL('@/assets/images/references/heltia.png', import.meta.url).href,
   },
   {
     name: 'Nilüfer',
-    image: new URL('@/assets/images/references/nilüfer.png', import.meta.url)
-      .href,
+    image: new URL('@/assets/images/references/nilüfer.png', import.meta.url).href,
   },
 ])
 
-const duplicatedLogos = computed(() => [
-  ...logos.value,
-  ...logos.value,
-  ...logos.value,
-])
+// Her seferde gösterilecek logo sayısı
+const LOGOS_PER_VIEW = 4
 
-let animationFrame = null
-let scrollPosition = 0
-const SCROLL_SPEED = 1
+const currentLogos = computed(() => {
+  const startIndex = currentIndex.value * LOGOS_PER_VIEW
+  const endIndex = startIndex + LOGOS_PER_VIEW
+  const visibleLogos = []
 
-const animate = () => {
-  if (sliderRef.value) {
-    const track = sliderRef.value.querySelector('.slider-track')
-    scrollPosition += SCROLL_SPEED
-    if (scrollPosition >= track.scrollWidth / 3) {
-      scrollPosition = 0
-    }
-    track.style.transform = `translateX(-${scrollPosition}px)`
-    animationFrame = requestAnimationFrame(animate)
+  for (let i = 0; i < LOGOS_PER_VIEW; i++) {
+    const index = (startIndex + i) % logos.value.length
+    visibleLogos.push(logos.value[index])
   }
+
+  return visibleLogos
+})
+
+let intervalId = null
+
+const nextLogos = () => {
+  currentIndex.value = (currentIndex.value + 1) % Math.ceil(logos.value.length / LOGOS_PER_VIEW)
 }
 
 onMounted(() => {
-  animate()
+  intervalId = setInterval(nextLogos, 3000) // 3 saniyede bir değişim
 })
 
 onUnmounted(() => {
-  if (animationFrame) {
-    cancelAnimationFrame(animationFrame)
+  if (intervalId) {
+    clearInterval(intervalId)
   }
 })
 </script>
+
 <style scoped>
 .slider-wrapper {
   width: 100%;
@@ -118,44 +117,242 @@ onUnmounted(() => {
   overflow: hidden;
 }
 
-.slider-track {
+.logo-track {
   display: flex;
-  width: fit-content;
-  transition: transform 0.03s linear;
+  justify-content: center;
+  gap: 30px;
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 0 20px;
 }
 
 .logo-item {
-  flex: 0 0 auto;
-  width: 25%;
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 20px;
-  perspective: 1000px; /* 3D derinlik efekti için perspektif */
+  perspective: 1000px;
 }
 
 .logo-image {
   max-width: 120px;
   height: auto;
-  transform: rotateY(15deg); /* Hafif bir 3D eğim */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Arkadaki beyazlığa karşı gölge */
-  border-radius: 8px; /* Köşeleri yuvarlama */
-  background: none; /* Beyaz arka planı kaldır */
-}
-
-.logo-item:hover .logo-image {
-  transform: rotateY(0deg) scale(1.1); /* Üzerine gelince düz ve büyüt */
+  transform: rotateY(15deg);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  background: none;
   transition: transform 0.3s ease;
 }
 
+.logo-item:hover .logo-image {
+  transform: rotateY(0deg) scale(1.1);
+}
+
+/* Geçiş animasyonları */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
 @media (max-width: 768px) {
-  .logo-image {
-    max-width: 100px;
+  .logo-track {
+    flex-wrap: wrap;
+    gap: 20px;
   }
 
   .logo-item {
-    width: 50%;
-    padding: 0 10px;
+    flex: 0 0 calc(50% - 10px);
+  }
+
+  .logo-image {
+    max-width: 100px;
+  }
+}
+</style> -->
+<!-- LogoSlider.vue -->
+<template>
+  <div class="slider-wrapper">
+    <div class="logo-slider-container">
+      <h2 class="mb-5">{{ title }}</h2>
+      <div class="logo-slider">
+        <div class="logo-track">
+          <TransitionGroup name="fade">
+            <div
+              v-for="logo in currentLogos"
+              :key="logo.name"
+              class="logo-item"
+            >
+              <img :src="logo.image" :alt="logo.name" class="logo-image" />
+            </div>
+          </TransitionGroup>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { ref, computed, onMounted, onUnmounted } from 'vue'
+
+const title = ref('Kurumsal Referanslarımız')
+const currentIndex = ref(0)
+
+const logos = ref([
+  {
+    name: 'Koç Sistem',
+    image: new URL('@/assets/images/references/koc.png', import.meta.url).href,
+  },
+  {
+    name: 'İstanbulspor',
+    image: new URL(
+      '@/assets/images/references/istanbulspor.png',
+      import.meta.url,
+    ).href,
+  },
+  {
+    name: 'Heltia',
+    image: new URL('@/assets/images/references/heltia.png', import.meta.url)
+      .href,
+  },
+  {
+    name: 'Nilüfer',
+    image: new URL('@/assets/images/references/nilüfer.png', import.meta.url)
+      .href,
+  },
+])
+
+// Her seferde gösterilecek logo sayısı
+const LOGOS_PER_VIEW = 4
+
+const currentLogos = computed(() => {
+  const startIndex = currentIndex.value * LOGOS_PER_VIEW
+  const endIndex = startIndex + LOGOS_PER_VIEW
+  const visibleLogos = []
+
+  for (let i = 0; i < LOGOS_PER_VIEW; i++) {
+    const index = (startIndex + i) % logos.value.length
+    visibleLogos.push(logos.value[index])
+  }
+
+  return visibleLogos
+})
+
+let intervalId = null
+
+const nextLogos = () => {
+  currentIndex.value =
+    (currentIndex.value + 1) % Math.ceil(logos.value.length / LOGOS_PER_VIEW)
+}
+
+onMounted(() => {
+  intervalId = setInterval(nextLogos, 3000) // 3 saniyede bir değişim
+})
+
+onUnmounted(() => {
+  if (intervalId) {
+    clearInterval(intervalId)
+  }
+})
+</script>
+
+<style scoped>
+.slider-wrapper {
+  width: 100%;
+  text-align: center;
+  padding: 40px 0;
+  background-image: url('@/assets/images/Image.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.slider-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.7);
+  z-index: 1;
+}
+
+.slider-wrapper > * {
+  position: relative;
+  z-index: 2;
+}
+
+.logo-slider-container {
+  width: 100%;
+  overflow: hidden;
+  padding: 10px 0;
+}
+
+.logo-slider {
+  width: 100%;
+  overflow: hidden;
+}
+
+.logo-track {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 0 20px;
+}
+
+.logo-item {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1000px;
+}
+
+.logo-image {
+  max-width: 120px;
+  height: auto;
+  transform: rotateY(15deg);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  background: none;
+  transition: transform 0.3s ease;
+}
+
+.logo-item:hover .logo-image {
+  transform: rotateY(0deg) scale(1.1);
+}
+
+/* Geçiş animasyonları */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+@media (max-width: 768px) {
+  .logo-track {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .logo-item {
+    flex: 0 0 calc(50% - 10px);
+  }
+
+  .logo-image {
+    max-width: 100px;
   }
 }
 </style>
