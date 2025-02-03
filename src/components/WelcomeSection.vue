@@ -27,7 +27,7 @@ const welcomeHeight = ref('300px')
 .welcome-container {
   width: 100%;
   height: v-bind(welcomeHeight);
-  background-color: #4758ff;
+  background-color: var(--primary-color);
   position: relative;
   overflow: hidden;
   display: flex;

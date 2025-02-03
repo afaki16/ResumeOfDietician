@@ -14,7 +14,7 @@
           <div class="custom-text-box">
             <h2 class="mb-2">{{ title }}</h2>
             <h5 class="mb-3">{{ subtitle }}</h5>
-            <p class="mb-0">{{ description }}</p>
+            <p class="mb-0">{{ aboutDescription }}</p>
           </div>
 
           <div class="row">
@@ -67,42 +67,32 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import CounterBlock from './CounterBlock.vue'
 
 const aboutImage = new URL('@/assets/images/Image.jpeg', import.meta.url).href
 const title = ref('Hakkımda')
 const subtitle = ref('Eğitim')
-const description = ref(
-  'Merhaba ben Diyetisyen Nisa Sakar. Lisans eğitimimi İstanbul Arel Üniversite Beslenme ve Diyetetik bölümü ile tamamlamış bulunmaktayım. Staj eğitimimi İstanbulspor Kulübü Futbol A takımı ile gerçekleştirdim. Bitirme tezimi sporcularda supplement kullanımı üzerine yazdım. Diyeti bir yaşam biçimi haline getirerek danışanlarıma sürdürülebilir sağlık üzerine yaşamı adapte etmek en büyük hedeflerim arasındadır.',
-)
-const mission = ref('Danışanlarımla paylaştığım uzmanlık alanlarım :')
-const missionItems = ref([
-  'Obezite',
-  'Kurumsal Beslenme Danışmanlığı',
-  'Kilo Alma',
-  'Kilo Verme',
-  'Aralıklı Oruç',
-  'Kilo Kontrolü',
-  'Hastalıklarda Beslenme',
-  'Ketojenik Beslenme',
-  'Çocuk ve Ergenlikte Beslenme',
-  'Vejeteryan ve Vegan Beslenme',
-])
+const aboutDescription = ref('')
+const mission = ref('')
+const missionItems = ref([])
 
-const counters = ref([
-  {
-    number: 1000,
-    text: 'Kaybedilen Kilo',
-    suffix: 'Kg',
-  },
-  {
-    number: 120,
-    text: 'Danışan Sayısı',
-    suffix: '',
-  },
-])
+const counters = ref([])
+
+onMounted(async () => {
+  try {
+    const response = await fetch('/data.json')
+    const data = await response.json()
+    counters.value = data.counters
+    mission.value = data.mission
+    missionItems.value = data.missionItems
+    aboutDescription.value = data.aboutDescription
+  } catch (error) {
+    console.error('Veri çekme hatası:', error)
+  }
+})
 </script>
+
 <style scoped>
 .custom-list {
   list-style: none;
@@ -114,8 +104,8 @@ const counters = ref([
   display: flex;
   align-items: center;
   margin-bottom: 15px;
-  font-weight: 700; /* Yazı kalınlığı artırıldı */
-  font-size: 1.1rem; /* Yazı boyutu artırıldı */
+  font-weight: 700;
+  font-size: 1.1rem;
   gap: 12px;
 }
 

@@ -4,70 +4,37 @@
       <h2 class="section-title">Online Diyet Programları</h2>
       <p class="section-subtitle">Size en uygun programı seçin</p>
 
-      <div class="pricing-container">
+      <div
+        v-if="pricingPlans && pricingPlans.length > 0"
+        class="pricing-container"
+      >
         <!-- 1. Kart -->
-        <div class="price-card">
-          <div class="plan-title">Tekli Paketi</div>
-          <div class="duration">1 Seans</div>
+        <div v-for="plan in pricingPlans" :key="plan.id" class="price-card">
+          <div v-if="plan.ribbon" class="ribbon">En Avantajlı</div>
+          <div class="plan-title">{{ plan.title }}</div>
+          <div class="duration">{{ plan.duration }}</div>
           <div class="price-container">
             <div class="price-content">
-              <div class="price">600₺<span>/Seans</span></div>
+              <div class="price">
+                {{ plan.pricePerSession }}₺<span>/Seans</span>
+              </div>
               <div class="divider"></div>
-              <p class="profit-label">Öğrenci İndirimi İle</p>
-              <p class="profit-detail">%50 İndirim Avantajı</p>
+              <p class="profit-label">✅ Kişiye Özel Beslenme Planı</p>
+              <p class="profit-label" v-if="plan.premium">
+                ✅ Vücut Analiz Takibi
+              </p>
+              <p class="profit-label" v-if="plan.premium">
+                ✅ 7/24 WhatsApp Desteği
+              </p>
             </div>
             <div class="profit-content">
               <span class="profit-label">Toplam Kazanç</span>
-              <span class="profit-value">0₺</span>
-              <span class="profit-detail">1 Seans × 600₺</span>
+              <span class="profit-value">{{ plan.different }}₺</span>
+              <span class="profit-detail"
+                >1 Seans × {{ plan.pricePerSession }}₺</span
+              >
               <div class="profit-divider"></div>
-              <span class="profit-label">Toplam 600₺</span>
-              <span class="profit-detail">Öğrenci İndirimi: 300₺</span>
-            </div>
-          </div>
-        </div>
-        <!-- 2. Kart -->
-        <div class="price-card">
-          <div class="plan-title">Başlangıç Paketi</div>
-          <div class="duration">1 Ay / 4 Seans</div>
-          <div class="price-container">
-            <div class="price-content">
-              <div class="price">552₺<span>/Seans</span></div>
-              <div class="divider"></div>
-              <p class="profit-label">Öğrenci İndirimi İle</p>
-              <p class="profit-detail">%50 İndirim Avantajı</p>
-            </div>
-            <div class="profit-content">
-              <span class="profit-label">Toplam Kazanç</span>
-              <span class="profit-value">2.208₺</span>
-              <span class="profit-detail">4 Seans × 552₺</span>
-              <div class="profit-divider"></div>
-              <span class="profit-label">Toplam 2.208₺</span>
-              <span class="profit-detail">Öğrenci İndirimi: 1.104₺</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 3. Kart -->
-        <div class="price-card">
-          <div class="ribbon">En Avantajlı</div>
-          <div class="plan-title">Avantajlı Paket</div>
-          <div class="duration">2 Ay / 8 Seans</div>
-          <div class="price-container">
-            <div class="price-content">
-              <div class="price">528₺<span>/Seans</span></div>
-              <div class="divider"></div>
-              <p class="profit-label">Öğrenci İndirimi İle</p>
-              <p class="profit-detail">%50 İndirim Avantajı</p>
-            </div>
-            <div class="profit-content">
-              <span class="profit-label">Toplam Kazanç</span>
-              <span class="profit-value">4.224₺</span>
-              <span class="profit-detail">8 Seans × 528₺</span>
-              <div class="profit-divider"></div>
-              <span class="profit-label">Toplam 4.224₺</span>
-
-              <span class="profit-detail">Öğrenci İndirimi: 2.112₺</span>
+              <span class="profit-label">Toplam {{ plan.totalPrice }}₺</span>
             </div>
           </div>
         </div>
@@ -75,6 +42,40 @@
     </div>
   </section>
 </template>
+<script setup>
+import { ref, onMounted } from 'vue'
+
+const pricingPlans = ref([])
+
+function calculatePrice(month, datas) {
+  var oneTime = month / 4
+  oneTime = oneTime + 100
+  datas[0].pricePerSession = oneTime
+  datas[0].totalPrice = oneTime
+
+  datas[1].pricePerSession = month / 4
+  datas[1].totalPrice = month
+  datas[1].different = oneTime * 4 - month
+
+  var twoMonth = month * 2
+  twoMonth = twoMonth - 200
+
+  datas[2].pricePerSession = twoMonth / 8
+  datas[2].totalPrice = twoMonth
+  datas[2].different = oneTime * 8 - twoMonth
+}
+
+onMounted(async () => {
+  try {
+    const response = await fetch('/data.json')
+    const data = await response.json()
+    calculatePrice(data.oneMonth, data.pricingPlans)
+    pricingPlans.value = data.pricingPlans
+  } catch (error) {
+    console.error('Veri çekme hatası:', error)
+  }
+})
+</script>
 
 <style scoped>
 .slider-wrapper {

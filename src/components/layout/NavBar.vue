@@ -154,7 +154,7 @@ onUnmounted(() => {
 }
 
 .btn-primary {
-  background: #007bff;
+  background: var(--primary-color);
   color: white !important;
   padding: 0.7rem 1.5rem;
   border-radius: 25px;
