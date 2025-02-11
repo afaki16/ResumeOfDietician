@@ -23,5 +23,4 @@ import PriceSection from './components/PriceSection.vue'
 import ContactSection from './components/ContactSection.vue'
 import SiteFooter from './components/layout/SiteFooter.vue'
 import LogoSlider from './components/LogoSlider.vue'
-import NavBar from './components/layout/Navbar.vue'
 </script>

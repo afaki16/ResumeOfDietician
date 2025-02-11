@@ -1,11 +1,7 @@
-<!-- Navbar.vue -->
 <template>
   <header>
     <nav :class="['navbar', { scrolled: isScrolled }]">
       <div class="navbar-container">
-        <!-- Logo -->
-
-        <!-- Mobil Menü Butonu -->
         <div class="mobile-menu" @click="toggleMenu">
           <div :class="['hamburger', { active: isMenuOpen }]">
             <span></span>
